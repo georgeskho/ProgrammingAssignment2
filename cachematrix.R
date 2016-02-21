@@ -11,20 +11,21 @@
 #################################################################################
 makeCacheMatrix <- function(x = matrix()) {
 
-        inv <- NULL
+        invM <- NULL
 		
-        set <- function(y) {							# set matrix x
+        set <- function(y) {								# set matrix x
                 x <<- y
-                inv <<- NULL
+                invM <<- NULL
         }
 		
-        get <- function() x							# get matrix x
-        setInverse <- function(inverse) inv <<- inverse		                # set inverse matrix
-        getInverse <- function() inv						# get inverse matrix
+        get <- function() x									# get matrix x
+        setInv <- function(invMatrix) invM <<- invMatrix	# set inverse matrix
+        getInv <- function() invM							# get inverse matrix
         list(set = set,
-             get = get,
-             setInverse = setInverse,
-             getInverse = getInverse)
+		     get = get,
+             setInv = setInv,
+             getInv = getInv )
+			 
 }
 
 ###############
@@ -37,14 +38,19 @@ makeCacheMatrix <- function(x = matrix()) {
 ## inverse matrix.
 ################################################################################
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-        inv <- x$getInverse()
-        if (!is.null(inv)) {
-                message("Getting Cached Inverse Matrix")
-                return(inv)
+
+		## Return a matrix that is the inverse of 'x'
+        invM <- x$getInv()
+		
+		## if it's in cache, return the inverse matrix
+        if(!is.null(invM)) {
+                message("getting cached inverse matrix")
+                return(invM)
         }
-        mat <- x$get()									# get matrix x
-        inv <- solve(mat, ...)								# use solve to get inverse matrix
-        x$setInverse(inv)								# put the Inverse matrix into cache
-        inv										# return inverse matrix
+		
+		## Otherwise, use solve to get the inverse matrix
+        m <- x$get()				# get matrix x
+        invM <- solve(m, ...)		# use solve to get inverse matrix	
+        x$setInv(invM)				# put the Inverse matrix into cache
+        invM						# return inverse matrix
 }
