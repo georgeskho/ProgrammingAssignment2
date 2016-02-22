@@ -49,7 +49,7 @@ cacheSolve <- function(x, ...) {
 		
 		## if it's in cache, return the inverse matrix
         if(!is.null(invM)) {
-                message("getting cached inverse matrix")
+                message("getting cached inverse matrix!")
                 return(invM)
         }
         
