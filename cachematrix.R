@@ -6,6 +6,11 @@
 ## benefit to caching the inverse of a matrix rather than compute it repeatedly.
 ## Below are a pair of functions that are used to create a special object that 
 ## stores a matrix and caches its inverse.
+#################################################################################
+
+##############################
+## function makeCacheMatrix ##
+#################################################################################
 ## This function creates a special "matrix" object that can cache its inverse.
 ## There is a list of functions: set, get, setInverse and getInverse.
 #################################################################################
@@ -28,8 +33,8 @@ makeCacheMatrix <- function(x = matrix()) {
 			 
 }
 
-###############
-## cacheSolve #
+#########################
+## function cacheSolve ##
 ################################################################################
 ## This function computes the inverse of the special "matrix" created by 
 ## makeCacheMatrix above. If the inverse has already been calculated (and the 
