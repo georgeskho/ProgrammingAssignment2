@@ -13,6 +13,10 @@
 #################################################################################
 ## This function creates a special "matrix" object that can cache its inverse.
 ## There is a list of functions: set, get, setInverse and getInverse.
+# set: set matrix x
+# get: get matrix x
+# setInverse: set the inverse matrix invM
+# getInverse: get the inverse matrix invM
 #################################################################################
 makeCacheMatrix <- function(x = matrix()) {
 
